@@ -68,7 +68,7 @@ function updateDisplay(objectSelected) {
 function onClickMouse(event){
     var x = event.offsetX;
     var y = event.offsetY;
-    console.log("x cord: " + x + ", y cord: " + y );
+    console.log("x: " + x + ", y: " + y );
 }
 function updatePosition() {
     if (objectSelected != null) {
