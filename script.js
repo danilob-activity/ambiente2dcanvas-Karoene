@@ -65,12 +65,66 @@ function updateDisplay(objectSelected) {
     document.getElementById("posy").value = objectSelected.getTranslate()[1];
 }
 
+function onClickMouse(event){
+    var x = event.offsetX;
+    var y = event.offsetY;
+    console.log("x cord: " + x + ", y cord: " + y );
+}
 function updatePosition() {
     if (objectSelected != null) {
         try {
             posx = parseFloat(document.getElementById("posx").value);
             posy = parseFloat(document.getElementById("posy").value);
             objectSelected.setTranslate(posx, posy);
+            drawCanvas();
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+function updatePosition1() {
+    if (objectSelected != null) {
+        try {
+            posx = parseInt(document.getElementById("ang").value);            
+            objectSelected.setRotate(posx);
+            drawCanvas();
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+function updatePosition2() {
+    if (objectSelected != null) {
+        try {
+            posx = parseFloat(document.getElementById("possx").value);
+            posy = parseFloat(document.getElementById("possy").value);
+            objectSelected.setScale(posx, posy);
+            drawCanvas();
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+function updatePosition3() {
+    if (objectSelected != null) {
+        try {
+            cor = document.getElementById("cor").value;
+            objectSelected.setFill(cor);
+            drawCanvas();
+        } catch (error) {
+            alert(error);
+        }
+    }
+}
+
+function updatePosition4() {
+    if (objectSelected != null) {
+        try {
+            borda = document.getElementById("bord").value;
+            objectSelected.setFill(borda);
             drawCanvas();
         } catch (error) {
             alert(error);

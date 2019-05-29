@@ -40,23 +40,30 @@
                             </tr>
                             <tr>
                                 <td>Translate:</td>
-                                <td style="white-space: nowrap;">x=<input id="posx" width="20%" type="text" value="0" oninput="updatePosition();"><br></br:>y=<input id="posy" width="20%" type="text" value="0" oninput="updatePosition();"></td>
+                                <td style="white-space: nowrap;">x=<input id="posx" width="20%" type="text" value="0" 
+                                    oninput="updatePosition();"><br></br:>y=<input id="posy" width="20%" type="text"
+                                     value="0" oninput="updatePosition();"></td>
                             </tr>
                             <tr>
                                 <td>Rotate:</td>
-                                <td width="100%"></td>
+                                <td width="100%" style="white-space: nowrap;">ang=<input id="ang" type="text" value="0" 
+                                    oninput="updatePosition1();"></br:></td>
                             </tr>
                             <tr>
                                 <td>Scale:</td>
-                                <td style='width:20%'></td>
+                                <td style="white-space: nowrap;">ss=<input id="possx" width="20%" type="text" value="0" 
+                                    oninput="updatePosition2();"><br></br:>sss=<input id="possy" width="20%" type="text"
+                                    value="0" oninput="updatePosition2();"></td>
                             </tr>
                             <tr>
                                 <td>Fill color:</td>
-                                <td style='width:20%'></td>
+                                <td width="20%" style="white-space: nowrap;">cor=#<input id="cor" type="text" value="0" 
+                                    oninput="updatePosition3();"></br:></td>
                             </tr>
                             <tr>
                                 <td>Stroke color</td>
-                                <td style='width:20%'></td>
+                                <td width="20%" style="white-space: nowrap;">borda=#<input id="bord" type="text" value="0"
+                                oninput="updatePosition4();"></br:></td>
                             </tr>
                         </table>
                     </section>
@@ -69,7 +76,7 @@
 
         <div class="content-wrap">
             <div class="content">
-                <canvas id="canvas" style="display:block; width:100%;
+                <canvas id="canvas" onclick="onClickMouse(event);" style="display:block; width:100%;
 				height:100%;"></canvas>
                 <!-- Related demos -->
 
