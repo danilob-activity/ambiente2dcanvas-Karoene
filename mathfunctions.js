@@ -5,12 +5,25 @@ function translate(x, y) { // dado dois pontos, x e y constroi a matriz homogene
         [0, 0, 1]
     ]; //retorna matriz 3x3
 }
-
+function invrTranslate(matrz) { // dado dois pontos, x e y constroi a matriz homogenea de translação 
+    return [
+        [1, 0, -matrz[0][2]],
+        [0, 1, -matrz[1][2]],
+        [0, 0, 1]
+    ]; //retorna matriz 3x3
+}
 //TODO: dado dois pontos, x e y constroi a matriz homogenea de translação 3x3
 function scale(x, y) {
     return [
         [x, 0, 0],
         [0, y, 0],
+        [0, 0, 1]
+    ]; //retorna matriz 3x3
+}
+function invrScale(matrz) {
+    return [
+        [1/matrz[0][0], 0, 0],
+        [0, 1/matrz[1][1], 0],
         [0, 0, 1]
     ]; //retorna matriz 3x3
 }
@@ -21,6 +34,14 @@ function rotate(theta) {
     return [
         [Math.cos(theta), -Math.sin(theta), 0],
         [Math.sin(theta), Math.cos(theta), 0],
+        [0, 0, 1]
+    ]; //retorna matriz 3x3
+}
+function invrRotate(matrz) {
+    //theta = Math.PI * theta / 180.; //transforma theta em ratianos
+    return [
+        [matrz[0][0], matrz[1][0], 0],
+        [matrz[0][1], matrz[1][1], 0],
         [0, 0, 1]
     ]; //retorna matriz 3x3
 }
@@ -41,6 +62,13 @@ function transformCanvas(Width, Height) {
     ];
 }
 
+function transformUsual(Width, Height) {
+    return [
+        [1, 0, -Width / 2.],
+        [0, -1, Height / 2.],
+        [0, 0, 1]
+    ];
+}
 
 function mult(a, b) {
     var aNumRows = a.length,

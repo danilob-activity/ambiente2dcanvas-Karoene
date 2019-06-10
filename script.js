@@ -5,6 +5,7 @@ const ctx = canvas.getContext("2d");
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.outerHeight;
+var flag = 0;
 
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
@@ -51,6 +52,15 @@ function pushBox() {
 
 }
 
+function pushTriangle() {/////////////////////////////////////////////////////////////////////////
+    var obj = new Triangle();
+    objects.push(obj);
+    objectSelected = objects[objects.length - 1];
+    updateDisplay(objectSelected);
+    document.getElementById("info-object").style.display = "block";
+    drawCanvas();}/////////////////////////////////////////////////////
+
+
 function pushCircle() {
     var obj = new Circle();
     objects.push(obj);
@@ -64,12 +74,20 @@ function updateDisplay(objectSelected) {
     document.getElementById("posx").value = objectSelected.getTranslate()[0];
     document.getElementById("posy").value = objectSelected.getTranslate()[1];
 }
-
-function onClickMouse(event){
-    var x = event.offsetX;
-    var y = event.offsetY;
-    console.log("x: " + x + ", y: " + y );
+function updateName() {
+    if(objectSelected != null){
+        try{
+            name = document.getElementById("name").value;
+            objectSelected.setName(name);
+            drawCanvas();
+        }
+        catch(error){
+            alert(error);
+        }
+    }
 }
+
+
 function updatePosition() {
     if (objectSelected != null) {
         try {
@@ -124,10 +142,59 @@ function updatePosition4() {
     if (objectSelected != null) {
         try {
             borda = document.getElementById("bord").value;
-            objectSelected.setFill(borda);
+            objectSelected.setStroke(borda);
             drawCanvas();
         } catch (error) {
             alert(error);
+        }
+    }
+}
+
+function onClickMouse(event){
+    var x = event.offsetX;
+    var y = event.offsetY;
+    console.log("x: " + x + ", y: " + y );
+    var M = transformUsual(WIDTH, HEIGHT);
+    //console.log("x: " + M );
+    var clickCoord = [x, y, 1];
+    var coorUsu = multVec(M, clickCoord);
+    //console.log("intectptoui");
+    objectSelected = null;
+    for(var i = 0; i < objects.length;  i++){
+        if(objects[i].tryIntersection(coorUsu)){
+            objectSelected = objects[i];
+            updateDisplay(objectSelected);
+            //console.log("intectptoui");
+        }
+    }
+
+}
+
+function overClick(event){
+    flag = 0;
+}
+
+function setToMoveObject(){
+    flag = 1;
+}
+
+document.addEventListener("dblclick", setToMoveObject);
+document.addEventListener("mousemove", moveObject);
+document.addEventListener("click", overClick);
+
+function moveObject(event){
+    if(flag == 1){
+        if(objectSelected != null){
+            var x = event.offsetX;
+            var y = event.offsetY;
+            //console.log(WIDTH);
+            var M = transformUsual(WIDTH, HEIGHT);
+            //console.log(M);
+            var clickcoords = [x, y, 1];
+
+            var pos = multVec(M, clickcoords);
+            objectSelected.setTranslate(pos[0], pos[1]);
+            drawCanvas();
         }
     }
 }

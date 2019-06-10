@@ -28,6 +28,7 @@
                 <div class="icon-list">
                     <button onClick="pushBox();">Append Box</button>
                     <button onClick="pushCircle();">Append Circle</button>
+                    <button onClick="pushTriangle();">Append Triangle</button>
                     <section id="info-object">
                         <table id="formObject">
                             <tr>
@@ -36,7 +37,7 @@
                             </tr>
                             <tr>
                                 <td>Name:</td>
-                                <td width="90%"><input type="text"></td>
+                                <td width="90%"><input type="text" id="name" value="0" oninput="updateName();"></td>
                             </tr>
                             <tr>
                                 <td>Translate:</td>
